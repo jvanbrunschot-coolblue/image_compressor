@@ -3,7 +3,6 @@ import imghdr  # https://docs.python.org/3.5/library/imghdr.html
 import click
 from PIL import Image
 
-compressed_dir = 'compressed/'
 supported_image_formats = ['jpeg', 'png']
 
 
@@ -25,20 +24,21 @@ def compress_image(original_image_path, compressed_image_path, quality):
 
 @click.command()
 @click.option('--entrypoint', required=True, help='Full path to image directory')
+@click.option('--output', default='compressed', help='Output directory')
 @click.option('--quality', default=80, help='Quality of the compression')
 @click.option('--force', default=False, help='Forces the application to compress already compressed files')
-def cli(entrypoint, quality, force):
+def cli(entrypoint, output, quality, force):
     absolute_entrypoint_path = os.path.abspath(entrypoint)
     for parent_dir, child_dir, files in os.walk(absolute_entrypoint_path):
 
         # Duplicate directory structure for compressed images
-        if not os.path.exists(compressed_dir + parent_dir):
-            os.makedirs(compressed_dir + parent_dir)
+        if not os.path.exists(output + parent_dir):
+            os.makedirs(output + parent_dir)
 
         # Iterate the files and check if they already exist and are in supported format
         for file in files:
             original_image_path = parent_dir + '/' + file
-            compressed_image_path = compressed_dir + parent_dir + '/' + file
+            compressed_image_path = output + parent_dir + '/' + file
             if imghdr.what(original_image_path) in supported_image_formats and \
                not os.path.isfile(compressed_image_path):
                 print(compress_image(
