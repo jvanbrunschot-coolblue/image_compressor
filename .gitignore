@@ -1,0 +1,4 @@
+.git/
+venv/
+compressed/
+.DS_Store
