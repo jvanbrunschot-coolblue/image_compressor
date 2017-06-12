@@ -1,9 +1,11 @@
 ## Image compressor
 
-A simple tool written in Python3 to compress a given directory tree. Currently only `jpeg` and `png` are supported image formats.
+A simple tool written in Python3 to compress a given directory tree. Currently only `jpeg` and `png` are supported image formats.  
 Default compression ratio is 80%.
 
 ### Usage
+
+`pip install -r requirements.txt`  
 
 `python app.py --help`
 
