@@ -20,4 +20,5 @@ Compress images are stored in `compressed/`
 
 ### TODO
 - [ ] enable `force` option to recompress images
-- [ ] able to change output directory
+- [x] able to change output directory
+- [ ] automatically archive compressed images to AWS S3 Glacier
